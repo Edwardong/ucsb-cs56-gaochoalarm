@@ -14,6 +14,41 @@ so that they will be alerted by the alarm to hang out.
 If you have a code from someone who has made an alarm then click on "Join Alarm".
 Then, input the unique key given to you. ( i.e. 8914223145) 
 
+# How to Run Source Code: Set up Database through MongoDB
+
+# 1. Creating environment variables locally
+
+Since we're going to be logging into a remote database, we have to hide our login credentials from the outside world. To do this, we're going to make a ```.env``` file inside our project directory. It should have a structure similar to this.
+
+```
+USER_=<your user's username>
+PASS_=<your user's password>
+DB_NAME_=<your db name>
+HOST_=<your host name> // should be something with mlab in it...
+```
+__!!! IMPORTANT !!!__
+
+Make sure to run the following to add ```.env``` to your .gitignore! This way our secret credentials won't be pushed into our GitHub repos.
+```
+echo ".env" >> .gitignore
+```
+# 2. Additions to pom.xml
+
+If you forked the project, you must add the following lines to your pom.xml inside the ```<dependencies>``` tag.
+
+```XML
+<!-- MongoDB NoSQL Database -->
+ <dependencies>
+    ...
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongo-java-driver</artifactId>
+        <version>3.8.1</version>
+    </dependency>
+    ...
+</dependencies>
+```
+
 # Future expectation
 - login/logout via social application (i.e. Facebook, Google, GitHub...)
 - sign up for Gauchoalarm, user profile
